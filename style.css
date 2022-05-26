@@ -1,0 +1,105 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+header {
+  background-image: url(/images/bg-desktop-dark.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 40vh;
+}
+
+.heading {
+  width: 40%;
+  padding: 5% 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+main {
+  width: 100%;
+  height: 60%;
+  /* background-color: hsl(235, 24%, 19%); */
+  background-color: hsl(235, 21%, 11%);
+}
+
+.todo {
+  position: fixed;
+  width: 40%;
+  height: 65%;
+  /* background-color: hsl(234, 39%, 85%); */
+  top: 25%;
+  left: 30%;
+  transform: translate(-30% -25%);
+  font-size: 18px;
+}
+
+.create-div {
+  width: 100%;
+  height: 10%;
+  position: relative;
+}
+
+.create {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: hsl(237, 14%, 26%);
+  box-shadow: hsl(235, 21%, 11%) 0px 5px 30px;
+  font-family: "Josefin Sans", sans-serif;
+  padding-left: 10%;
+}
+
+.tick {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid hsl(234, 11%, 52%);
+  position: absolute;
+  top: 15%;
+  left: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tick.check {
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+}
+
+.tick img {
+  opacity: 0;
+}
+
+.tick img.show {
+  opacity: 1;
+}
+
+.create::placeholder {
+  font-size: 18px;
+  color: hsl(234, 39%, 85%);
+}
+
+/* - Very Dark Blue: hsl(235, 21%, 11%)
+- Very Dark Desaturated Blue: hsl(235, 24%, 19%)
+- Light Grayish Blue: hsl(234, 39%, 85%)
+- Light Grayish Blue (hover): hsl(236, 33%, 92%)
+- Dark Grayish Blue: hsl(234, 11%, 52%)
+- Very Dark Grayish Blue: hsl(233, 14%, 35%)
+- Very Dark Grayish Blue: hsl(237, 14%, 26%) */
