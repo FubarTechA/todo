@@ -36,56 +36,81 @@
               placeholder="Create a new todo..."
               class="create"
             />
-            <span class="inputcircle circle check">
+            <span class="inputcircle circle">
               <img src="/images/icon-check.svg" alt="" />
             </span>
           </div>
-          <div>
-            <ul class="todoListContainer">
+          <div class="todoListContainer">
+            <ul>
               <li class="todoList">
                 <div class="todoItem">
-                  <span class="circle"></span>
-                  <p>Complete online Javascript course</p>
+                  <span class="circle completed">
+                    <img src="/images/icon-check.svg" alt="" class="show" />
+                  </span>
+                  <p class="todoInfo completed">
+                    Complete online Javascript course
+                  </p>
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
               <li class="todoList">
                 <div class="todoItem">
-                  <span class="circle"></span>
-                  <p>Complete online Javascript course</p>
+                  <span class="circle">
+                    <img src="/images/icon-check.svg" alt="" />
+                  </span>
+                  <p class="todoInfo">Jog around the park 3x</p>
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
               <li class="todoList">
                 <div class="todoItem">
-                  <span class="circle"></span>
-                  <p>Complete online Javascript course</p>
+                  <span class="circle">
+                    <img src="/images/icon-check.svg" alt="" />
+                  </span>
+                  <p class="todoInfo">10 minutes meditation</p>
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
               <li class="todoList">
                 <div class="todoItem">
-                  <span class="circle"></span>
-                  <p>Complete online Javascript course</p>
+                  <span class="circle">
+                    <img src="/images/icon-check.svg" alt="" />
+                  </span>
+                  <p class="todoInfo">Read for 1 hour</p>
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
               <li class="todoList">
                 <div class="todoItem">
-                  <span class="circle"></span>
-                  <p>Complete online Javascript course</p>
+                  <span class="circle">
+                    <img src="/images/icon-check.svg" alt="" />
+                  </span>
+                  <p class="todoInfo">Pick up groceries</p>
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
               <li class="todoList">
                 <div class="todoItem">
-                  <span class="circle"></span>
-                  <p>Complete online Javascript course</p>
+                  <span class="circle">
+                    <img src="/images/icon-check.svg" alt="" />
+                  </span>
+                  <p class="todoInfo">Complete Todo App on Frontend Mentor</p>
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
             </ul>
+            <div class="functions">
+              <p><span>6</span> items left</p>
+              <div class="state">
+                <p class="active">All</p>
+                <p class="hover">Active</p>
+                <p>Completed</p>
+              </div>
+              <p>Clear Completed</p>
+            </div>
           </div>
+
+          <p class="reorderpara">Drag and drop to reorder list</p>
         </div>
       </main>
     </div>
