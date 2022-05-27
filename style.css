@@ -16,6 +16,11 @@ header {
   height: 40vh;
 }
 
+/* css for header lightmode  */
+header.light {
+  background-image: url(/images/bg-desktop-light.jpg);
+}
+
 /* Css for the heading  */
 
 .heading {
@@ -36,8 +41,12 @@ h1 {
 main {
   width: 100%;
   height: 60%;
-  /* background-color: hsl(235, 24%, 19%); */
   background-color: hsl(235, 21%, 11%);
+}
+
+/* css for main lightmode  */
+main.light {
+  background-color: hsl(0, 0%, 98%);
 }
 
 /* css for the todo app  */
@@ -76,6 +85,12 @@ main {
   /* font-size: 18px; */
 }
 
+/* css for input lightmode  */
+.create.light {
+  background-color: hsl(0, 0%, 98%);
+  box-shadow: none;
+}
+
 /* css for the input placeholder  */
 .create::placeholder {
   font-size: 18px;
@@ -91,6 +106,10 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.circle.light {
+  border-color: hsl(236, 33%, 92%);
 }
 
 /* css for the input circle only  */
@@ -131,6 +150,12 @@ main {
   box-shadow: rgb(0, 0, 0) 0px 5px 100px;
 }
 
+/* css for .todoListContainer lightmode  */
+.todoListContainer.light {
+  background-color: hsl(0, 0%, 98%);
+  box-shadow: rgb(0, 0, 0) 5px 5px 30px;
+}
+
 /* css for the individual list item  */
 .todoList {
   padding: 2.5% 3%;
@@ -141,6 +166,11 @@ main {
   color: hsl(234, 39%, 85%);
   list-style: none;
   cursor: pointer;
+}
+
+.todoList.light {
+  color: hsl(235, 19%, 35%);
+  border-color: hsl(233, 11%, 84%);
 }
 
 /* css to hide the image (cross) - initial state  */
@@ -167,6 +197,10 @@ main {
   text-decoration: line-through;
 }
 
+.todoInfo.completed.light {
+  color: hsl(233, 11%, 84%);
+}
+
 /* css for the todoitem span  */
 .todoItem span {
   margin-right: 30px;
@@ -179,6 +213,10 @@ main {
   justify-content: space-between;
   align-items: center;
   color: hsl(233, 14%, 35%);
+}
+
+.functions.light {
+  color: hsl(236, 9%, 61%);
 }
 
 /* css to style the state div properly  */
@@ -293,3 +331,10 @@ main {
 - Very Dark Grayish Blue: hsl(233, 14%, 35%)
 - Very Dark Grayish Blue: hsl(237, 14%, 26%) */
 /* hsl(220, 98%, 61%) */
+
+/* 
+- Very Light Gray: hsl(0, 0%, 98%)
+- Very Light Grayish Blue: hsl(236, 33%, 92%)
+- Light Grayish Blue: hsl(233, 11%, 84%)
+- Dark Grayish Blue: hsl(236, 9%, 61%)
+- Very Dark Grayish Blue: hsl(235, 19%, 35%) */
