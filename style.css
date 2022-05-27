@@ -237,6 +237,10 @@ main.light {
   color: hsl(234, 39%, 85%);
 }
 
+.functions p.hover.light {
+  color: hsl(235, 19%, 35%);
+}
+
 /* css for the functions p when active  */
 .functions p.active {
   color: hsl(220, 98%, 61%);
