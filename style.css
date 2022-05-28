@@ -82,9 +82,9 @@ main.light {
   font-family: "Josefin Sans", sans-serif;
   padding-left: 10%;
   border-radius: 5px;
-  font-size: 18px;
   color: hsl(234, 39%, 85%);
   caret-color: hsl(220, 98%, 61%);
+  font-size: 18px;
 }
 
 /* css for input lightmode  */
@@ -159,8 +159,7 @@ main.light {
 }
 
 .todoContainer {
-  /* max-height: 380px; */
-  /* background-color: aqua; */
+  max-height: 300px;
   /* overflow-y: scroll; */
 }
 
@@ -170,7 +169,7 @@ main.light {
 
 /* css for the individual list item  */
 .todoList {
-  padding: 2.5% 3%;
+  padding: 2% 3%;
   display: flex;
   align-items: center;
   justify-content: space-between;
