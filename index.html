@@ -47,7 +47,7 @@
           </form>
           <div class="todoListContainer">
             <ul class="todoContainer">
-              <li class="todoList">
+              <li class="todoList" data-status="pending">
                 <div class="todoItem">
                   <span class="circle">
                     <img src="/images/icon-check.svg" alt="" />
@@ -56,7 +56,7 @@
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
-              <li class="todoList">
+              <li class="todoList" data-status="pending">
                 <div class="todoItem">
                   <span class="circle">
                     <img src="/images/icon-check.svg" alt="" />
@@ -65,7 +65,7 @@
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
-              <li class="todoList">
+              <li class="todoList" data-status="pending">
                 <div class="todoItem">
                   <span class="circle">
                     <img src="/images/icon-check.svg" alt="" />
@@ -74,7 +74,7 @@
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
-              <li class="todoList">
+              <li class="todoList" data-status="pending">
                 <div class="todoItem">
                   <span class="circle">
                     <img src="/images/icon-check.svg" alt="" />
@@ -83,7 +83,7 @@
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
-              <li class="todoList">
+              <li class="todoList" data-status="pending">
                 <div class="todoItem">
                   <span class="circle">
                     <img src="/images/icon-check.svg" alt="" />
@@ -92,7 +92,7 @@
                 </div>
                 <img src="/images/icon-cross.svg" alt="" class="cross" />
               </li>
-              <li class="todoList">
+              <li class="todoList" data-status="pending">
                 <div class="todoItem">
                   <span class="circle">
                     <img src="/images/icon-check.svg" alt="" />
@@ -105,9 +105,9 @@
             <div class="functions">
               <p><span>6</span> items left</p>
               <div class="state">
-                <p>All</p>
-                <p>Active</p>
-                <p>Completed</p>
+                <p class="allItems">All</p>
+                <p class="pending">Active</p>
+                <p class="completed">Completed</p>
               </div>
               <p class="clear">Clear Completed</p>
             </div>
