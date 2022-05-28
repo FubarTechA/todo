@@ -163,6 +163,7 @@ main.light {
   /* overflow-y: scroll; */
 }
 
+/* css to add overflow  */
 .todoContainer.overflow {
   overflow-y: scroll;
 }
@@ -179,6 +180,7 @@ main.light {
   cursor: pointer;
 }
 
+/* css for todoList light  */
 .todoList.light {
   color: hsl(235, 19%, 35%);
   border-color: hsl(233, 11%, 84%);

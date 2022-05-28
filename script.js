@@ -13,7 +13,8 @@ const todoInfo = document.querySelectorAll(".todoInfo");
 const functionDiv = document.querySelector(".functions");
 const stateDiv = functionDiv.querySelector(".state");
 const functionPara = functionDiv.querySelectorAll("p");
-
+const clearPara = functionDiv.querySelector(".clear");
+const cross = document.querySelector(".cross");
 class App {
   constructor() {
     this.md = ["sun", "moon"];
@@ -21,8 +22,14 @@ class App {
     mode.addEventListener("click", this.changeMode.bind(this));
     todoContainer.addEventListener("click", this.completeTask.bind(this));
     stateDiv.addEventListener("click", this.showActive.bind(this));
-    this.createTodo();
-    this.collectInput();
+    input.addEventListener("click", this.removePlaceholder);
+    document.addEventListener("keydown", this.createTodo.bind(this));
+    stateDiv.addEventListener("mouseover", this.showHover.bind(this));
+    stateDiv.addEventListener("mouseout", this.removeHover.bind(this));
+    clearPara.addEventListener("mouseover", this.showClearHover);
+    clearPara.addEventListener("mouseout", this.hideClearHover);
+    this.addTodoHover();
+    this.removeTodoHover();
   }
 
   changeMode() {
@@ -60,9 +67,9 @@ class App {
   }
 
   markComplete(ev) {
-    let item = ev.target.closest(".todoList");
-    const task = item.querySelector(".todoInfo");
-    const circle = item.querySelector(".circle");
+    let circle = ev.target.closest(".circle");
+    if (!circle) return;
+    const task = circle.closest(".todoList").querySelector(".todoInfo");
     const check = circle.querySelector("img");
     task.classList.add("completed");
     circle.classList.add("completed");
@@ -76,8 +83,8 @@ class App {
 
   addActive(event) {
     let para = event.target;
+    if (!para) return;
     let siblings = para.closest(".state").querySelectorAll("p");
-    console.log(siblings);
     siblings.forEach((sib) => {
       if (sib === para) return;
       sib.classList.remove("active");
@@ -88,40 +95,99 @@ class App {
     }
   }
 
-  createTodo() {
-    input.addEventListener("click", function () {
-      input.removeAttribute("placeholder");
+  showHover(e) {
+    // selecting the p tag
+    let para = e.target;
+    if (!para) return;
+    // adding the hover class when mouse is over the para
+    para.classList.add("hover");
+  }
+
+  removeHover(e) {
+    // selecting the p tag
+    let para = e.target;
+    if (!para) return;
+
+    // removing the hover class when mouse is over the para
+    para.classList.remove("hover");
+  }
+
+  removePlaceholder() {
+    input.removeAttribute("placeholder");
+  }
+
+  createTodo(e) {
+    if (e.key === "Enter") {
+      const text = input.value;
+
+      // creating and inserting the markup for the new to do entry
+      this.todoMarkup(text);
+
+      // adding the scroll feature on overflow
+      this.addScroller();
+    } else return;
+    e.preventDefault();
+    // setting the placeholder back to its default
+    input.value = "";
+    input.setAttribute("placeholder", "Create a new todo...");
+  }
+
+  todoMarkup(val) {
+    const markup = `
+    <li class="todoList">
+    <div class="todoItem">
+      <span class="circle">
+        <img src="/images/icon-check.svg" alt="" />
+      </span>
+      <p class="todoInfo">${val}</p>
+    </div>
+    <img src="/images/icon-cross.svg" alt="" class="cross" />
+  </li>
+    `;
+    todoUl.insertAdjacentHTML("afterbegin", markup);
+    todoList = document.querySelectorAll(".todoList");
+  }
+
+  addScroller() {
+    if (todoList.length > 6) {
+      console.log(todoUl.style);
+      todoUl.classList.add("overflow");
+    }
+  }
+
+  showClearHover() {
+    clearPara.classList.add("hover");
+  }
+
+  hideClearHover() {
+    clearPara.classList.remove("hover");
+  }
+
+  addTodoHover() {
+    todoUl.addEventListener("mouseover", function (e) {
+      const para = e.target.closest("p");
+      const circle = e.target.closest(".circle");
+      if (para) {
+        let cross = para.closest(".todoList").querySelector(".cross");
+        cross.classList.add("show");
+      }
+      if (circle) {
+        circle.classList.add("hover");
+      }
     });
   }
 
-  collectInput() {
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") {
-        // let enterKey = e.key;
-        // console.log(enterKey);
-        const text = input.value;
-        const markup = `
-        <li class="todoList">
-        <div class="todoItem">
-          <span class="circle">
-            <img src="/images/icon-check.svg" alt="" />
-          </span>
-          <p class="todoInfo">${text}</p>
-        </div>
-        <img src="/images/icon-cross.svg" alt="" class="cross" />
-      </li>
-        `;
-        todoUl.insertAdjacentHTML("afterbegin", markup);
-        todoList = document.querySelectorAll(".todoList");
-        // console.log(todoList);
-        if (todoList.length > 6) {
-          console.log(todoUl.style);
-          todoUl.classList.add("overflow");
-        }
-      } else return;
-      e.preventDefault();
-      input.value = "";
-      input.setAttribute("placeholder", "Create a new todo...");
+  removeTodoHover() {
+    todoUl.addEventListener("mouseout", function (e) {
+      const para = e.target.closest("p");
+      const circle = e.target.closest(".circle");
+      if (para) {
+        let cross = para.closest(".todoList").querySelector(".cross");
+        cross.classList.remove("show");
+      }
+      if (circle) {
+        circle.classList.remove("hover");
+      }
     });
   }
 }
