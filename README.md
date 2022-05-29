@@ -56,7 +56,7 @@ My first time using a drag and drop it was quite challenging bur exciting. I als
 
 ### Continued development
 
-Looking forward to working better with my classes and improving on my drag and drop and responsive design
+Looking forward to working better with my classes and improving on my drag and drop and responsive design. It was a serious challenge to get that to work, i had to do a lot of hacky javascript to make this work, Please any and every input would be appreciated
 
 ### Useful resources
 
@@ -64,7 +64,7 @@ Looking forward to working better with my classes and improving on my drag and d
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/)
+- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/FubarTechA)
 - Twitter - [@yourusername](https://www.twitter.com/@fubar4kt)
 
 ## Acknowledgments

@@ -249,6 +249,10 @@ class App {
       if (item.dataset.status === "completed") return;
       item.classList.add("hide");
     });
+    todoList = document.querySelectorAll(".todoList");
+    if (todoList.length <= 6) {
+      todoUl.classList.remove("overflow");
+    }
   }
   showPending() {
     const list = document.querySelectorAll(".todoList");
@@ -257,11 +261,19 @@ class App {
       if (item.dataset.status === "pending") return;
       item.classList.add("hide");
     });
+    todoList = document.querySelectorAll(".todoList");
+    if (todoList.length <= 6) {
+      todoUl.classList.remove("overflow");
+    }
   }
 
   showAll() {
     const list = document.querySelectorAll(".todoList");
     list.forEach((item) => item.classList.remove("hide"));
+    todoList = document.querySelectorAll(".todoList");
+    if (todoList.length <= 6) {
+      todoUl.classList.remove("overflow");
+    }
   }
 
   decreaseLength() {
