@@ -42,6 +42,7 @@ main {
   width: 100%;
   height: 60%;
   background-color: hsl(235, 21%, 11%);
+  transition: all 0.5s ease;
 }
 
 /* css for main lightmode  */
@@ -108,6 +109,7 @@ main.light {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s ease;
 }
 
 .circle.light {
@@ -134,6 +136,7 @@ main.light {
 /* css for the original state of the circle image - to hide the image  */
 .circle img {
   opacity: 0;
+  transition: all 0.5s ease;
 }
 
 /* css to show the circle image on hover  */
@@ -146,10 +149,10 @@ main.light {
 /* css for the todo list container  */
 .todoListContainer {
   width: 100%;
-  /* height: 450px; */
   background-color: hsl(235, 24%, 19%);
   border-radius: 5px;
   box-shadow: rgb(0, 0, 0) 0px 5px 100px;
+  transition: all 0.5s ease;
 }
 
 /* css for .todoListContainer lightmode  */
@@ -160,7 +163,6 @@ main.light {
 
 .todoContainer {
   max-height: 300px;
-  /* overflow-y: scroll; */
 }
 
 /* css to add overflow  */
@@ -177,6 +179,7 @@ main.light {
   border-bottom: 1px solid hsl(233, 14%, 35%);
   color: hsl(234, 39%, 85%);
   list-style: none;
+  transition: all 0.5s ease;
   cursor: pointer;
 }
 
@@ -189,6 +192,7 @@ main.light {
 /* css to hide the image (cross) - initial state  */
 .cross {
   opacity: 0;
+  transition: all 0.5s ease;
   pointer-events: none;
 }
 
@@ -202,6 +206,7 @@ main.light {
 .todoItem {
   display: flex;
   align-items: center;
+  transition: all 0.5s ease;
 }
 
 /* css to style the todoInfo when completed  */
@@ -243,6 +248,7 @@ main.light {
 
 .functions p {
   cursor: pointer;
+  transition: all 0.5s ease;
 }
 
 /* css for the functions p on hover  */

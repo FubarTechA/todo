@@ -18,11 +18,15 @@ const cross = document.querySelector(".cross");
 const allpara = document.querySelector(".allItems");
 const pendingpara = document.querySelector(".pending");
 const completedpara = document.querySelector(".completed");
+const length = document.querySelector(".length");
+const clear = document.querySelector(".clear");
+
 class App {
   constructor() {
     this.md = ["sun", "moon"];
     this.modeArray = [main, header, input, todoContainer, functionDiv];
-    this.completdeArr = [];
+    this.length = todoList.length;
+    console.log(this.length);
 
     mode.addEventListener("click", this.changeMode.bind(this));
     todoUl.addEventListener("click", this.completeTask.bind(this));
@@ -36,9 +40,10 @@ class App {
     todoUl.addEventListener("mouseover", this.addTodoHover.bind(this));
     todoUl.addEventListener("mouseout", this.removeTodoHover.bind(this));
     todoUl.addEventListener("click", this.deleteTodo.bind(this));
-    this.showCompleted();
-    this.showPending();
-    this.showAll();
+    completedpara.addEventListener("click", this.showCompleted.bind(this));
+    pendingpara.addEventListener("click", this.showPending);
+    allpara.addEventListener("click", this.showAll);
+    clear.addEventListener("click", this.clearFunc);
   }
 
   changeMode() {
@@ -86,6 +91,7 @@ class App {
     task.classList.add("completed");
     circle.classList.add("completed");
     check.classList.add("show");
+    this.decreaseLength();
   }
 
   addAttribute(ev) {
@@ -129,6 +135,8 @@ class App {
 
   removePlaceholder() {
     input.removeAttribute("placeholder");
+    const list = document.querySelectorAll(".todoList");
+    list.forEach((item) => (item.style.display = "flex"));
   }
 
   createTodo(e) {
@@ -161,6 +169,7 @@ class App {
     `;
     todoUl.insertAdjacentHTML("afterbegin", markup);
     todoList = document.querySelectorAll(".todoList");
+    this.increaseLength();
   }
 
   addScroller() {
@@ -205,34 +214,49 @@ class App {
     const close = e.target.closest(".cross");
     if (!close) return;
     const item = close.closest(".todoList");
+    const circle = item.querySelector(".circle");
+    // console.log(circle);
     item.remove();
+    if (circle.classList.contains("completed")) return;
+    this.decreaseLength();
   }
 
   showCompleted() {
-    completedpara.addEventListener("click", function () {
-      const list = document.querySelectorAll(".todoList");
-      list.forEach((item) => {
-        item.style.display = "flex";
-        if (item.dataset.status === "completed") return;
-        item.style.display = "none";
-      });
+    const list = document.querySelectorAll(".todoList");
+    list.forEach((item) => {
+      item.style.display = "flex";
+      if (item.dataset.status === "completed") return;
+      item.style.display = "none";
     });
   }
   showPending() {
-    pendingpara.addEventListener("click", function () {
-      const list = document.querySelectorAll(".todoList");
-      list.forEach((item) => {
-        item.style.display = "flex";
-        if (item.dataset.status === "pending") return;
-        item.style.display = "none";
-      });
+    const list = document.querySelectorAll(".todoList");
+    list.forEach((item) => {
+      item.style.display = "flex";
+      if (item.dataset.status === "pending") return;
+      item.style.display = "none";
     });
   }
 
   showAll() {
-    allpara.addEventListener("click", function () {
-      const list = document.querySelectorAll(".todoList");
-      list.forEach((item) => (item.style.display = "flex"));
+    const list = document.querySelectorAll(".todoList");
+    list.forEach((item) => (item.style.display = "flex"));
+  }
+
+  decreaseLength() {
+    this.length--;
+    length.textContent = this.length;
+  }
+
+  increaseLength() {
+    this.length++;
+    length.textContent = this.length;
+  }
+
+  clearFunc() {
+    const list = document.querySelectorAll(".todoList");
+    list.forEach((item) => {
+      if (item.dataset.status === "completed") item.remove();
     });
   }
 }
