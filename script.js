@@ -24,7 +24,7 @@ const clear = document.querySelector(".clear");
 class App {
   constructor() {
     this.md = ["sun", "moon"];
-    this.modeArray = [main, header, input, todoContainer, functionDiv];
+    // this.modeArray = [main, header, input, todoContainer, functionDiv];
     this.length = todoList.length;
     console.log(this.length);
 
@@ -44,9 +44,22 @@ class App {
     pendingpara.addEventListener("click", this.showPending);
     allpara.addEventListener("click", this.showAll);
     clear.addEventListener("click", this.clearFunc);
+    this.dragFunc();
   }
 
   changeMode() {
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    const input = document.querySelector(".create");
+    const todoContainer = document.querySelector(".todoListContainer");
+    const functionDiv = document.querySelector(".functions");
+    const circle = document.querySelectorAll(".circle");
+    const todoList = document.querySelectorAll(".todoList");
+    const todoInfo = document.querySelectorAll(".todoInfo");
+    const functionPara = functionDiv.querySelectorAll("p");
+    const arr = [main, header, input, todoContainer, functionDiv];
+    const secondArr = [circle, todoList, todoInfo, functionPara];
+
     if (mode.dataset.mode === "moon") {
       this.changeModeImg("sun");
     } else {
@@ -54,16 +67,10 @@ class App {
     }
 
     // toggling the light class on array of elements to change mode
-    this.toggleLightMode();
+    this.toggleLightMode(arr, secondArr);
   }
-  toggleLightMode() {
-    const forEachArray = [
-      this.modeArray,
-      circle,
-      todoList,
-      todoInfo,
-      functionPara,
-    ];
+  toggleLightMode(array, array2) {
+    const forEachArray = [array, ...array2];
     forEachArray.forEach((arr) =>
       arr.forEach((arrayEl) => arrayEl.classList.toggle("light"))
     );
@@ -136,7 +143,7 @@ class App {
   removePlaceholder() {
     input.removeAttribute("placeholder");
     const list = document.querySelectorAll(".todoList");
-    list.forEach((item) => (item.style.display = "flex"));
+    list.forEach((item) => item.classList.remove("hide"));
   }
 
   createTodo(e) {
@@ -157,16 +164,23 @@ class App {
 
   todoMarkup(val) {
     const markup = `
-    <li class="todoList" data-status="pending">
-    <div class="todoItem">
-      <span class="circle">
+    <li class="todoList ${
+      todoContainer.classList.contains("light") ? "light" : ""
+    }" data-status="pending">
+    <div class="todoItem" draggable="true">
+      <span class="circle ${
+        todoContainer.classList.contains("light") ? "light" : ""
+      }">
         <img src="/images/icon-check.svg" alt="" />
       </span>
-      <p class="todoInfo">${val}</p>
+      <p class="todoInfo ${
+        todoContainer.classList.contains("light") ? "light" : ""
+      }">${val}</p>
     </div>
     <img src="/images/icon-cross.svg" alt="" class="cross" />
   </li>
     `;
+    console.log(todoContainer.classList.contains("light"));
     todoUl.insertAdjacentHTML("afterbegin", markup);
     todoList = document.querySelectorAll(".todoList");
     this.increaseLength();
@@ -215,7 +229,6 @@ class App {
     if (!close) return;
     const item = close.closest(".todoList");
     const circle = item.querySelector(".circle");
-    // console.log(circle);
     item.remove();
     if (circle.classList.contains("completed")) return;
     this.decreaseLength();
@@ -224,23 +237,23 @@ class App {
   showCompleted() {
     const list = document.querySelectorAll(".todoList");
     list.forEach((item) => {
-      item.style.display = "flex";
+      item.classList.remove("hide");
       if (item.dataset.status === "completed") return;
-      item.style.display = "none";
+      item.classList.add("hide");
     });
   }
   showPending() {
     const list = document.querySelectorAll(".todoList");
     list.forEach((item) => {
-      item.style.display = "flex";
+      item.classList.remove("hide");
       if (item.dataset.status === "pending") return;
-      item.style.display = "none";
+      item.classList.add("hide");
     });
   }
 
   showAll() {
     const list = document.querySelectorAll(".todoList");
-    list.forEach((item) => (item.style.display = "flex"));
+    list.forEach((item) => item.classList.remove("hide"));
   }
 
   decreaseLength() {
@@ -258,6 +271,99 @@ class App {
     list.forEach((item) => {
       if (item.dataset.status === "completed") item.remove();
     });
+    todoList = document.querySelectorAll(".todoList");
+    if (todoList.length <= 6) {
+      todoUl.classList.remove("overflow");
+    }
+  }
+  // drag() {
+
+  // }
+
+  dragFunc() {
+    const list = document.querySelectorAll(".todoList");
+    const info = document.querySelectorAll(".todoItem");
+    let switched;
+
+    const swapItems = function (first, second) {
+      // selecting the todoList and the todoItem for the first and second
+      const parent1 = first.closest(".todoList");
+      const child1 = second.querySelector(".todoItem");
+      if (first === child1) return;
+      // selecting the cross image for both first and second
+      const cross1 = parent1.querySelector(".cross");
+      const cross2 = second.querySelector(".cross");
+
+      // removing the cross image for both first and second
+      cross1.remove();
+      cross2.remove();
+
+      // creating a new cross markup
+      const markup = `<img src="/images/icon-cross.svg" alt="" class="cross" />`;
+
+      // appending the the second - child(todoItem) into parent1 (first - parent (todoList))
+      parent1.appendChild(child1);
+
+      // apending the first(todoItem) into the second (todoList)
+      second.appendChild(first);
+
+      // inserting the cross image for the first (its parent - todoList) & for the second(todoList)
+      parent1.insertAdjacentHTML("beforeend", markup);
+      second.insertAdjacentHTML("beforeend", markup);
+
+      // switching the dataset properties
+      let temp = parent1.dataset.status;
+      parent1.dataset.status = second.dataset.status;
+      second.dataset.status = temp;
+    };
+    const dragStart = function (e) {
+      console.log(e.target);
+      const item = e.target.closest(".todoItem");
+      if (!item) return;
+      // console.log("dragstart");
+      // circle = this.innerHtml;
+      switched = item;
+      console.log(switched);
+    };
+    const dragEnter = function (e) {
+      // console.log("dragenter");
+      let list = e.target.closest(".todoList");
+      if (!list) return;
+      // console.log(list);
+      list.classList.add("over");
+    };
+    const dragLeave = function (e) {
+      let list = e.target.closest(".todoList");
+      if (!list) return;
+      list.classList.remove("over");
+    };
+    const dragOver = function (e) {
+      // console.log("dragover");
+      e.preventDefault();
+    };
+    const dragDrop = function (e) {
+      let list = e.target.closest(".todoList");
+      if (!list) return;
+      const dragEnd = list;
+      swapItems(switched, dragEnd);
+      list.classList.remove("over");
+      console.log("drop");
+    };
+
+    // info.forEach((info) => {
+    //   info.addEventListener("dragstart", dragStart);
+    // });
+    todoUl.addEventListener("dragstart", dragStart);
+    todoUl.addEventListener("dragover", dragOver);
+    todoUl.addEventListener("dragenter", dragEnter);
+    todoUl.addEventListener("dragleave", dragLeave);
+    todoUl.addEventListener("drop", dragDrop);
+    // list.forEach((item) => {
+    //   item.addEventListener("dragover", dragOver);
+    //   item.addEventListener("dragenter", dragEnter);
+    //   item.addEventListener("dragleave", dragLeave);
+    //   item.addEventListener("drop", dragDrop);
+    // });
   }
 }
 
