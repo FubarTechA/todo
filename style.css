@@ -254,7 +254,6 @@ main.light {
 
 .state.light {
   background-color: hsl(0, 0%, 98%);
-  box-shadow: rgb(206, 197, 197) 5px 5px 30px;
 }
 
 .state p {
@@ -356,6 +355,10 @@ main.light {
     background-color: hsl(235, 24%, 19%);
     justify-content: center;
     border-radius: 5px;
+  }
+
+  .state.light {
+    box-shadow: rgb(206, 197, 197) 5px 5px 30px;
   }
 
   .reorderpara {
