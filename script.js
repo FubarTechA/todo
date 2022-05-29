@@ -24,7 +24,6 @@ const clear = document.querySelector(".clear");
 class App {
   constructor() {
     this.md = ["sun", "moon"];
-    // this.modeArray = [main, header, input, todoContainer, functionDiv];
     this.length = todoList.length;
     console.log(this.length);
 
@@ -57,9 +56,18 @@ class App {
     const todoList = document.querySelectorAll(".todoList");
     const todoInfo = document.querySelectorAll(".todoInfo");
     const functionPara = functionDiv.querySelectorAll("p");
-    const arr = [main, header, input, todoContainer, functionDiv];
+    const stateDiv = functionDiv.querySelector(".state");
+    const mainHead = document.querySelector("h1");
+    const arr = [
+      main,
+      header,
+      input,
+      todoContainer,
+      functionDiv,
+      stateDiv,
+      mainHead,
+    ];
     const secondArr = [circle, todoList, todoInfo, functionPara];
-
     if (mode.dataset.mode === "moon") {
       this.changeModeImg("sun");
     } else {
@@ -276,9 +284,6 @@ class App {
       todoUl.classList.remove("overflow");
     }
   }
-  // drag() {
-
-  // }
 
   dragFunc() {
     const list = document.querySelectorAll(".todoList");
@@ -317,13 +322,9 @@ class App {
       second.dataset.status = temp;
     };
     const dragStart = function (e) {
-      console.log(e.target);
       const item = e.target.closest(".todoItem");
       if (!item) return;
-      // console.log("dragstart");
-      // circle = this.innerHtml;
       switched = item;
-      console.log(switched);
     };
     const dragEnter = function (e) {
       // console.log("dragenter");
@@ -347,25 +348,13 @@ class App {
       const dragEnd = list;
       swapItems(switched, dragEnd);
       list.classList.remove("over");
-      console.log("drop");
     };
-
-    // info.forEach((info) => {
-    //   info.addEventListener("dragstart", dragStart);
-    // });
     todoUl.addEventListener("dragstart", dragStart);
     todoUl.addEventListener("dragover", dragOver);
     todoUl.addEventListener("dragenter", dragEnter);
     todoUl.addEventListener("dragleave", dragLeave);
     todoUl.addEventListener("drop", dragDrop);
-    // list.forEach((item) => {
-    //   item.addEventListener("dragover", dragOver);
-    //   item.addEventListener("dragenter", dragEnter);
-    //   item.addEventListener("dragleave", dragLeave);
-    //   item.addEventListener("drop", dragDrop);
-    // });
   }
 }
 
 const Todo = new App();
-// remember to set all the to do list to display flex when you want to add a new list item

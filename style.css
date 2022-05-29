@@ -25,7 +25,7 @@ header.light {
 
 .heading {
   width: 40%;
-  padding: 2% 30% 0;
+  padding: 5% 30% 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -36,6 +36,8 @@ h1 {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 2px;
+  color: hsl(0, 0%, 98%);
+  transition: all 0.5s ease;
 }
 
 main {
@@ -56,7 +58,7 @@ main.light {
   position: fixed;
   width: 40%;
   height: 65%;
-  top: 15%;
+  top: 22%;
   left: 30%;
   transform: translate(-30% -15%);
   font-size: 18px;
@@ -158,7 +160,7 @@ main.light {
 /* css for .todoListContainer lightmode  */
 .todoListContainer.light {
   background-color: hsl(0, 0%, 98%);
-  box-shadow: rgb(0, 0, 0) 5px 5px 30px;
+  box-shadow: rgb(206, 197, 197) 5px 5px 30px;
 }
 
 .todoContainer {
@@ -250,6 +252,11 @@ main.light {
   display: flex;
 }
 
+.state.light {
+  background-color: hsl(0, 0%, 98%);
+  box-shadow: rgb(206, 197, 197) 5px 5px 30px;
+}
+
 .state p {
   margin: 0 10px;
 }
@@ -281,8 +288,12 @@ main.light {
 }
 
 @media only screen and (max-width: 600px) {
-  .wrapper {
+  header {
     background-image: url(/images/bg-mobile-dark.jpg);
+  }
+
+  header.light {
+    background-image: url(/images/bg-mobile-light.jpg);
   }
 
   .heading {
@@ -303,6 +314,7 @@ main.light {
 
   .create {
     width: 85%;
+    height: 80%;
     padding-left: 15%;
   }
 
@@ -313,7 +325,7 @@ main.light {
 
   .inputcircle {
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 3%;
   }
 
